@@ -1,12 +1,8 @@
 #!/bin/sh
 
-if [ "$S3CMD_VERSION" == "" ]; then
-  S3CMD_VERSION=latest
-fi
-
-docker run --rm -it \
+docker run --rm \
   -e ACCESS_KEY=${AWS_ACCESS_KEY} \
   -e SECRET_KEY=${AWS_SECRET_KEY} \
   -v $(pwd):/ws \
   -w /ws \
-  chickenzord/s3cmd:$S3CMD_VERSION $@
+  chickenzord/s3cmd:${S3CMD_VERSION:-latest} $@
